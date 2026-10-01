@@ -23,6 +23,10 @@ Route::middleware(['auth'])->group(function () {
         ->name('plans.index');
     Route::livewire('/plan/{plan?}', 'plans.show')
         ->name('plans.show');
+    Route::livewire('/tracks', 'tracks')
+        ->name('tracks.index');
+    Route::livewire('/track/{track?}', 'tracks.show')
+        ->name('tracks.show');
 });
 
 require __DIR__.'/settings.php';

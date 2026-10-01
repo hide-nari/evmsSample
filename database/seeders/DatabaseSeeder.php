@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Plan;
 use App\Models\Project;
 use App\Models\System;
+use App\Models\Track;
 use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -99,6 +100,29 @@ class DatabaseSeeder extends Seeder
             'worker_id' => '1',
             'planTime' => 10.0,
             'workDay' => '2026-10-03',
+        ]);
+
+
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 10.0,
+            'WorkDay' => '2026-10-01',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 10.0,
+            'WorkDay' => '2026-10-02',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 10.0,
+            'WorkDay' => '2026-10-03',
         ]);
     }
 }
