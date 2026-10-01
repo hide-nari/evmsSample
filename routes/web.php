@@ -9,7 +9,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::livewire('/workers', 'workers')
         ->name('workers.index');
-    Route::livewire('/worker/{workers?}', 'workers.show')
+    Route::livewire('/worker/{worker?}', 'workers.show')
         ->name('workers.show');
 });
 
