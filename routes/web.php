@@ -15,6 +15,10 @@ Route::middleware(['auth'])->group(function () {
         ->name('systems.index');
     Route::livewire('/system/{system?}', 'systems.show')
         ->name('systems.show');
+    Route::livewire('/projects', 'projects')
+        ->name('projects.index');
+    Route::livewire('/project/{project?}', 'projects.show')
+        ->name('projects.show');
 });
 
 require __DIR__.'/settings.php';

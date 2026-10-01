@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Project;
 use App\Models\System;
 use App\Models\User;
 use App\Models\Worker;
@@ -55,6 +56,28 @@ class DatabaseSeeder extends Seeder
         ]);
         System::create([
             'name' => 'システムEEE',
+        ]);
+
+
+        Project::create([
+            'name' => '改修プラン1',
+            'mgr_number' => 'MGR001',
+            'system_id' => 1,
+            'estimate' => 100.0,
+        ]);
+
+        Project::create([
+            'name' => '改修プラン2',
+            'mgr_number' => 'MGR001',
+            'system_id' => 1,
+            'estimate' => 100.0,
+        ]);
+
+        Project::create([
+            'name' => '不具合1',
+            'mgr_number' => 'TBD',
+            'system_id' => 1,
+            'estimate' => 100.0,
         ]);
     }
 }
