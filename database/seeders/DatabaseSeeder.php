@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Plan;
 use App\Models\Project;
 use App\Models\System;
 use App\Models\User;
@@ -58,7 +59,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'システムEEE',
         ]);
 
-
         Project::create([
             'name' => '改修プラン1',
             'mgr_number' => 'MGR001',
@@ -78,6 +78,27 @@ class DatabaseSeeder extends Seeder
             'mgr_number' => 'TBD',
             'system_id' => 1,
             'estimate' => 100.0,
+        ]);
+
+        Plan::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'planTime' => 8.0,
+            'workDay' => '2026-10-01',
+        ]);
+
+        Plan::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'planTime' => 8.0,
+            'workDay' => '2026-10-02',
+        ]);
+
+        Plan::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'planTime' => 10.0,
+            'workDay' => '2026-10-03',
         ]);
     }
 }
