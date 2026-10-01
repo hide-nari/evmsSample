@@ -9,6 +9,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::livewire('/workers', 'workers')
         ->name('workers.index');
+    Route::livewire('/worker/{workers?}', 'workers.show')
+        ->name('workers.show');
 });
 
 require __DIR__.'/settings.php';
