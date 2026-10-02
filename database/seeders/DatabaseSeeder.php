@@ -62,67 +62,79 @@ class DatabaseSeeder extends Seeder
 
         Project::create([
             'name' => '改修プラン1',
-            'mgr_number' => 'MGR001',
+            'mgr_number' => '123',
             'system_id' => 1,
-            'estimate' => 100.0,
+            'estimate' => 0.3,
         ]);
 
         Project::create([
             'name' => '改修プラン2',
-            'mgr_number' => 'MGR001',
+            'mgr_number' => '456',
             'system_id' => 1,
-            'estimate' => 100.0,
+            'estimate' => 0.24,
         ]);
 
         Project::create([
             'name' => '不具合1',
             'mgr_number' => 'TBD',
             'system_id' => 1,
-            'estimate' => 100.0,
+            'estimate' => 0.5,
         ]);
 
         Plan::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'planTime' => 8.0,
-            'workDay' => '2026-10-01',
+            'planTime' => 2.0 / 17.5,
+            'workDay' => '2026-09-21',
         ]);
 
         Plan::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'planTime' => 8.0,
-            'workDay' => '2026-10-02',
+            'planTime' => 1.0 / 17.5,
+            'workDay' => '2026-09-28',
         ]);
 
         Plan::create([
-            'project_id' => '1',
-            'worker_id' => '1',
-            'planTime' => 10.0,
-            'workDay' => '2026-10-03',
+            'project_id' => '2',
+            'worker_id' => '2',
+            'planTime' => 2.5 / 17.5,
+            'workDay' => '2026-09-21',
         ]);
 
-
-
-        Track::create([
-            'project_id' => '1',
-            'worker_id' => '1',
-            'workTime' => 10.0,
-            'WorkDay' => '2026-10-01',
-        ]);
-
-        Track::create([
-            'project_id' => '1',
-            'worker_id' => '1',
-            'workTime' => 10.0,
-            'WorkDay' => '2026-10-02',
+        Plan::create([
+            'project_id' => '2',
+            'worker_id' => '2',
+            'planTime' => 1.0 / 17.5,
+            'workDay' => '2026-09-28',
         ]);
 
         Track::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'workTime' => 10.0,
-            'WorkDay' => '2026-10-03',
+            'workTime' => 1.0 / 17.5,
+            'workDay' => '2026-09-21',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 2.0 / 17.5,
+            'workDay' => '2026-09-28',
+        ]);
+
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '2',
+            'workTime' => 2.5 / 17.5,
+            'workDay' => '2026-09-21',
+        ]);
+
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '2',
+            'workTime' => 1.0 / 17.5,
+            'workDay' => '2026-09-28',
         ]);
     }
 }
