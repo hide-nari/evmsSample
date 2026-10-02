@@ -30,6 +30,10 @@
                     <flux:sidebar.item icon="home" :href="route('tracks.index')" :current="request()->routeIs('tracks.index')" wire:navigate>
                         {{ __('Tracks') }}
                     </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="bolt" :href="route('projects.view')" :current="request()->routeIs('projects.view')" wire:navigate>
+                        {{ __('Projects View') }}
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

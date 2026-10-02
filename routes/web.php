@@ -27,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('tracks.index');
     Route::livewire('/track/{track?}', 'tracks.show')
         ->name('tracks.show');
+
+    Route::livewire('/projects/list', 'projects.view')
+        ->name('projects.view');
 });
 
 require __DIR__.'/settings.php';
