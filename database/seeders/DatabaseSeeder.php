@@ -84,56 +84,56 @@ class DatabaseSeeder extends Seeder
         Plan::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'planTime' => 2.0 / 17.5,
+            'planTime' => 1.0,
             'workDay' => '2026-09-21',
         ]);
 
         Plan::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'planTime' => 1.0 / 17.5,
+            'planTime' => 2.0,
             'workDay' => '2026-09-28',
         ]);
 
         Plan::create([
             'project_id' => '2',
             'worker_id' => '2',
-            'planTime' => 2.5 / 17.5,
+            'planTime' => 2.5,
             'workDay' => '2026-09-21',
         ]);
 
         Plan::create([
             'project_id' => '2',
             'worker_id' => '2',
-            'planTime' => 1.0 / 17.5,
+            'planTime' => 1.0,
             'workDay' => '2026-09-28',
         ]);
 
         Track::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'workTime' => 1.0 / 17.5,
+            'workTime' => 1.0,
             'workDay' => '2026-09-21',
         ]);
 
         Track::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'workTime' => 2.0 / 17.5,
+            'workTime' => 2.0,
             'workDay' => '2026-09-28',
         ]);
 
         Track::create([
             'project_id' => '2',
             'worker_id' => '2',
-            'workTime' => 2.5 / 17.5,
+            'workTime' => 2.5,
             'workDay' => '2026-09-21',
         ]);
 
         Track::create([
             'project_id' => '2',
             'worker_id' => '2',
-            'workTime' => 1.0 / 17.5,
+            'workTime' => 1.0,
             'workDay' => '2026-09-28',
         ]);
     }
