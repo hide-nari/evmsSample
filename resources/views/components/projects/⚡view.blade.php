@@ -98,10 +98,10 @@ new class extends Component {
                     Estimate
                 </flux:table.column>
                 <flux:table.column>
-                    Plan
+                    Planed Cost
                 </flux:table.column>
                 <flux:table.column>
-                    Track
+                    Actual Cost
                 </flux:table.column>
                 <flux:table.column>
                     CPI

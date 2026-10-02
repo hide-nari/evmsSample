@@ -24,6 +24,10 @@
             </flux:sidebar.item>
         </flux:sidebar.group>
         <flux:sidebar.group :heading="__('Transaction Data')" class="grid">
+            <flux:sidebar.item icon="document-plus" :href="route('projects.index')"
+                               :current="request()->routeIs('projects.index')" wire:navigate>
+                {{ __('Projects') }}
+            </flux:sidebar.item>
             <flux:sidebar.item icon="document-plus" :href="route('plans.index')"
                                :current="request()->routeIs('plans.index')"
                                wire:navigate>
@@ -46,10 +50,6 @@
                                :current="request()->routeIs('systems.index')"
                                wire:navigate>
                 {{ __('Systems') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item icon="circle-stack" :href="route('projects.index')"
-                               :current="request()->routeIs('projects.index')" wire:navigate>
-                {{ __('Projects') }}
             </flux:sidebar.item>
         </flux:sidebar.group>
     </flux:sidebar.nav>
