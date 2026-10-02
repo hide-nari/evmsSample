@@ -114,7 +114,8 @@ new class extends Component {
                             {{ $project->id }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $project->name }}
+                            {{ $project->name }}<br>
+                            {{ 'No.' . $project->mgr_number }}
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $project->system->name ?? '' }} <br>
