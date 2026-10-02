@@ -86,18 +86,22 @@ new class extends Component {
                     Name
                 </flux:table.column>
                 <flux:table.column sortable
-                                   :sorted="$sortBy === 'created_at'"
+                                   :sorted="$sortBy === 'mgr_number'"
                                    :direction="$sortDirection"
-                                   wire:click="sort('created_at')"
-                                   class="w-48">
-                    CreateDate
+                                   wire:click="sort('mgr_number')">
+                    MGR Number
                 </flux:table.column>
                 <flux:table.column sortable
-                                   :sorted="$sortBy === 'updated_at'"
+                                   :sorted="$sortBy === 'system_id'"
                                    :direction="$sortDirection"
-                                   wire:click="sort('updated_at')"
-                                   class="w-48">
-                    UpdateDate
+                                   wire:click="sort('system_id')">
+                    System ID
+                </flux:table.column>
+                <flux:table.column sortable
+                                   :sorted="$sortBy === 'estimate'"
+                                   :direction="$sortDirection"
+                                   wire:click="sort('estimate')">
+                    Estimate
                 </flux:table.column>
                 <flux:table.column align="center" class="w-24">Edit</flux:table.column>
                 <flux:table.column align="center" class="w-24">Delete</flux:table.column>
@@ -112,10 +116,13 @@ new class extends Component {
                             {{ $project->name }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $project->created_at }}
+                            {{ $project->mgr_number }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $project->updated_at }}
+                            {{ $project->system->name ?? '' }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            {{ $project->estimate }}
                         </flux:table.cell>
                         <flux:table.cell align="center">
                             @unless($project->deleted_at)

@@ -1,21 +1,31 @@
 <?php
 
 use App\Models\Project;
+use App\Models\System;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 new class extends Component {
     public Project $project;
+    public Collection $systems;
 
     public ?int $id = null;
     #[Validate('required')]
     public ?string $name;
+    public ?string $mgrNumber;
+    public ?string $systemId;
+    public ?float $estimate;
     public ?string $method = 'update';
 
     public function mount(Project $project): void
     {
         $project->id ? $this->id = $project->id : $this->method = 'add';
         $this->name = $project->name;
+        $this->mgrNumber = $project->mgr_number;
+        $this->systemId = $project->system_id;
+        $this->estimate = $project->estimate;
+        $this->systems = System::all();
     }
 
     public function add(): void
@@ -23,9 +33,12 @@ new class extends Component {
         $this->validate();
         $project = Project::create([
             'name' => $this->pull('name'),
+            'mgr_number' => $this->pull('mgrNumber'),
+            'system_id' => $this->pull('systemId'),
+            'estimate' => $this->pull('estimate'),
         ]);
         Flux::toast(
-            text: "created $project->name record.",
+            text: "created record.",
             variant: 'success'
         );
     }
@@ -35,9 +48,12 @@ new class extends Component {
         $this->validate();
         Project::findOrFail($this->id)->update([
             'name' => $this->name,
+            'mgr_number' => $this->mgrNumber,
+            'system_id' => $this->systemId,
+            'estimate' => $this->estimate,
         ]);
         Flux::toast(
-            text: "updated $this->name record.",
+            text: "updated record.",
             variant: 'warning'
         );
     }
@@ -48,14 +64,20 @@ new class extends Component {
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
     <flux:card class="lg:w-1/3 space-y-4">
         <flux:input wire:model="name" label="Name:"/>
-        <div wire:dirty="name">
-            <flux:button
-                wire:click="{{$method}}"
-                variant="primary"
-                class="mr-2"
-            >{{ Str::ucfirst($method) }}
-            </flux:button>
-        </div>
+        <flux:input wire:model="mgrNumber" label="MGR Number:"/>
+        <flux:select wire:model="systemId" label="System:">
+            <flux:select.option value="0">----</flux:select.option>
+            @foreach($systems as $system)
+                <flux:select.option value="{{ $system->id }}">{{ $system->name }}</flux:select.option>
+            @endforeach
+        </flux:select>
+        <flux:input type="number" step="0.01" wire:model="estimate" label="Estimate:"/>
+        <flux:button
+            wire:click="{{$method}}"
+            variant="primary"
+            class="mr-2"
+        >{{ Str::ucfirst($method) }}
+        </flux:button>
         <flux:button href="{{ route('projects.index') }}" variant="filled">
             Back
         </flux:button>
