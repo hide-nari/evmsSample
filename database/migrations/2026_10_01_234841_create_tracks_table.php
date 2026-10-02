@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('project_id')->nullable();
             $table->foreignId('worker_id')->nullable();
             $table->float('workTime')->nullable();
-            $table->date('WorkDay')->nullable();
+            $table->date('workDay')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
