@@ -80,6 +80,20 @@ new class extends Component {
                     ID
                 </flux:table.column>
                 <flux:table.column sortable
+                                   align="left"
+                                   :sorted="$sortBy === 'project_id'"
+                                   :direction="$sortDirection"
+                                   wire:click="sort('project_id')">
+                    Project
+                </flux:table.column>
+                <flux:table.column sortable
+                                   align="left"
+                                   :sorted="$sortBy === 'worker_id'"
+                                   :direction="$sortDirection"
+                                   wire:click="sort('worker_id')">
+                    Worker
+                </flux:table.column>
+                <flux:table.column sortable
                                    :sorted="$sortBy === 'workTime'"
                                    :direction="$sortDirection"
                                    wire:click="sort('workTime')">
@@ -91,20 +105,6 @@ new class extends Component {
                                    wire:click="sort('workDay')">
                     Work Day
                 </flux:table.column>
-                <flux:table.column sortable
-                                   :sorted="$sortBy === 'created_at'"
-                                   :direction="$sortDirection"
-                                   wire:click="sort('created_at')"
-                                   class="w-48">
-                    CreateDate
-                </flux:table.column>
-                <flux:table.column sortable
-                                   :sorted="$sortBy === 'updated_at'"
-                                   :direction="$sortDirection"
-                                   wire:click="sort('updated_at')"
-                                   class="w-48">
-                    UpdateDate
-                </flux:table.column>
                 <flux:table.column align="center" class="w-24">Edit</flux:table.column>
                 <flux:table.column align="center" class="w-24">Delete</flux:table.column>
             </flux:table.columns>
@@ -115,16 +115,16 @@ new class extends Component {
                             {{ $track->id }}
                         </flux:table.cell>
                         <flux:table.cell>
+                            {{ $track->project->name ?? '' }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            {{ $track->worker->name ?? '' }}
+                        </flux:table.cell>
+                        <flux:table.cell>
                             {{ $track->workTime }}
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $track->workDay }}
-                        </flux:table.cell>
-                        <flux:table.cell>
-                            {{ $track->created_at }}
-                        </flux:table.cell>
-                        <flux:table.cell>
-                            {{ $track->updated_at }}
                         </flux:table.cell>
                         <flux:table.cell align="center">
                             @unless($track->deleted_at)

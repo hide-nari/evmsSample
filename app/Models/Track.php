@@ -18,7 +18,7 @@ class Track extends Model
             'project_id',
             'worker_id',
             'workTime',
-            'WorkDay',
+            'workDay',
         ];
 
     public function project(): BelongsTo
@@ -34,7 +34,7 @@ class Track extends Model
     protected function casts(): array
     {
         return [
-            'WorkDay' => 'date',
+            'workDay' => 'date',
         ];
     }
 }
