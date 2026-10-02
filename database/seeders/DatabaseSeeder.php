@@ -49,15 +49,19 @@ class DatabaseSeeder extends Seeder
         ]);
         System::create([
             'name' => 'システムBBB',
+            'worker_id' => 1,
         ]);
         System::create([
             'name' => 'システムCCC',
+            'worker_id' => 1,
         ]);
         System::create([
             'name' => 'システムDDD',
+            'worker_id' => 2,
         ]);
         System::create([
             'name' => 'システムEEE',
+            'worker_id' => 2,
         ]);
 
         Project::create([
