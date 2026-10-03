@@ -12,10 +12,10 @@ new class extends Component {
 
     public ?int $id = null;
     #[Validate('required')]
-    public ?string $name;
-    public ?string $mgrNumber;
-    public ?string $systemId;
-    public ?float $estimate;
+    public ?string $name = null;
+    public ?string $mgrNumber = null;
+    public ?string $systemId = null;
+    public ?float $estimate = null;
     public ?string $method = 'update';
 
     public function mount(Project $project): void

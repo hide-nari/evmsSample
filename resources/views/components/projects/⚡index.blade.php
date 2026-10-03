@@ -20,7 +20,9 @@ new class extends Component {
     {
         return Project::withTrashed($this->trashViewFlg)
             ->when($this->search, function (Builder $query) {
-                $query->where('name', 'like', '%'.$this->search.'%');
+                $query->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('mgr_number', 'like', '%'.$this->search.'%')
+                    ->withTrashed($this->trashViewFlg);
             })
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate(12);
