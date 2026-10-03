@@ -107,7 +107,6 @@ class DatabaseSeeder extends Seeder
             'workDay' => '2026-10-19',
         ]);
 
-
         // transaction plan 2
         Plan::create([
             'project_id' => '1',
@@ -201,7 +200,6 @@ class DatabaseSeeder extends Seeder
             'workTime' => 3.0,
             'workDay' => '2026-10-13',
         ]);
-
 
         // transaction track 2
         Track::create([

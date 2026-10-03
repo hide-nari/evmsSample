@@ -22,16 +22,25 @@ class Project extends Model
             'estimate',
         ];
 
+    /**
+     * @return BelongsTo<System, $this>
+     */
     public function system(): BelongsTo
     {
         return $this->belongsTo(System::class);
     }
 
+    /**
+     * @return HasMany<Plan, $this>
+     */
     public function plans(): HasMany
     {
         return $this->hasMany(Plan::class);
     }
 
+    /**
+     * @return HasMany<Track, $this>
+     */
     public function tracks(): HasMany
     {
         return $this->hasMany(Track::class);

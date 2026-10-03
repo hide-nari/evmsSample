@@ -21,11 +21,17 @@ class Plan extends Model
             'workDay',
         ];
 
+    /**
+     * @return BelongsTo<Project, $this>
+     */
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
     }
 
+    /**
+     * @return BelongsTo<Worker, $this>
+     */
     public function worker(): BelongsTo
     {
         return $this->belongsTo(Worker::class);

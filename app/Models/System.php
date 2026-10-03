@@ -19,6 +19,9 @@ class System extends Model
             'worker_id',
         ];
 
+    /**
+     * @return BelongsTo<Worker, $this>
+     */
     public function worker(): BelongsTo
     {
         return $this->belongsTo(Worker::class);
