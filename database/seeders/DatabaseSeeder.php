@@ -6,7 +6,6 @@ use App\Models\Plan;
 use App\Models\Project;
 use App\Models\System;
 use App\Models\Track;
-use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,125 +19,296 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
+        // master
         Worker::create([
             'name' => '鈴木一郎',
         ]);
         Worker::create([
-            'name' => '鈴木二郎',
+            'name' => '佐藤二郎',
         ]);
         Worker::create([
-            'name' => '鈴木三郎',
+            'name' => '石島三郎',
         ]);
         Worker::create([
-            'name' => '鈴木四郎',
+            'name' => '伊藤四郎',
         ]);
+
         Worker::create([
-            'name' => '鈴木五郎',
+            'name' => '野口五郎',
         ]);
 
         System::create([
             'name' => 'システムAAA',
-            'worker_id' => 1,
+            'worker_id' => 5,
         ]);
         System::create([
             'name' => 'システムBBB',
-            'worker_id' => 1,
+            'worker_id' => 5,
         ]);
         System::create([
             'name' => 'システムCCC',
-            'worker_id' => 1,
         ]);
-        System::create([
-            'name' => 'システムDDD',
-            'worker_id' => 2,
-        ]);
-        System::create([
-            'name' => 'システムEEE',
-            'worker_id' => 2,
+
+        // transaction project
+        Project::create([
+            'name' => '改修プラン1(CPI1以上のサンプル)',
+            'ticket_number' => '123',
+            'system_id' => 1,
+            'estimate' => 0.5,
         ]);
 
         Project::create([
-            'name' => '改修プラン1',
-            'ticket_number' => '123',
+            'name' => '改修プラン2(CPI1のサンプル)',
+            'ticket_number' => '456',
             'system_id' => 1,
             'estimate' => 0.3,
         ]);
 
         Project::create([
-            'name' => '改修プラン2',
-            'ticket_number' => '456',
+            'name' => '改修プラン3(CPI1以下のサンプル)',
+            'ticket_number' => '789',
             'system_id' => 1,
-            'estimate' => 0.24,
+            'estimate' => 0.2,
         ]);
 
         Project::create([
-            'name' => '不具合1',
+            'name' => '不具合1(プランがないサンプル)',
             'ticket_number' => 'TBD',
             'system_id' => 1,
-            'estimate' => 0.5,
+            'estimate' => 0.1,
+        ]);
+
+        // transaction plan 1
+        Plan::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'planTime' => 10.0,
+            'workDay' => '2026-10-01',
         ]);
 
         Plan::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'planTime' => 1.0,
-            'workDay' => '2026-09-21',
+            'planTime' => 20.0,
+            'workDay' => '2026-10-05',
         ]);
 
         Plan::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'planTime' => 2.0,
-            'workDay' => '2026-09-28',
+            'planTime' => 20.0,
+            'workDay' => '2026-10-12',
+        ]);
+
+        Plan::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'planTime' => 10.0,
+            'workDay' => '2026-10-19',
+        ]);
+
+
+        // transaction plan 2
+        Plan::create([
+            'project_id' => '1',
+            'worker_id' => '2',
+            'planTime' => 10.0,
+            'workDay' => '2026-10-19',
         ]);
 
         Plan::create([
             'project_id' => '2',
-            'worker_id' => '2',
-            'planTime' => 2.5,
-            'workDay' => '2026-09-21',
+            'worker_id' => '3',
+            'planTime' => 10,
+            'workDay' => '2026-10-01',
         ]);
 
         Plan::create([
             'project_id' => '2',
-            'worker_id' => '2',
-            'planTime' => 1.0,
-            'workDay' => '2026-09-28',
+            'worker_id' => '3',
+            'planTime' => 20,
+            'workDay' => '2026-10-05',
+        ]);
+
+        Plan::create([
+            'project_id' => '2',
+            'worker_id' => '3',
+            'planTime' => 12,
+            'workDay' => '2026-10-12',
+        ]);
+
+        // transaction plan 3
+        Plan::create([
+            'project_id' => '3',
+            'worker_id' => '4',
+            'planTime' => 28.0,
+            'workDay' => '2026-10-05',
+        ]);
+
+        // transaction track 1
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 5.0,
+            'workDay' => '2026-10-01',
         ]);
 
         Track::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'workTime' => 1.0,
-            'workDay' => '2026-09-21',
+            'workTime' => 5.0,
+            'workDay' => '2026-10-02',
         ]);
 
         Track::create([
             'project_id' => '1',
             'worker_id' => '1',
-            'workTime' => 2.0,
-            'workDay' => '2026-09-28',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-05',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-06',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-07',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-08',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 5.0,
+            'workDay' => '2026-10-09',
+        ]);
+
+        Track::create([
+            'project_id' => '1',
+            'worker_id' => '1',
+            'workTime' => 3.0,
+            'workDay' => '2026-10-13',
+        ]);
+
+
+        // transaction track 2
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '3',
+            'workTime' => 5.0,
+            'workDay' => '2026-10-01',
         ]);
 
         Track::create([
             'project_id' => '2',
-            'worker_id' => '2',
-            'workTime' => 2.5,
-            'workDay' => '2026-09-21',
+            'worker_id' => '3',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-02',
         ]);
 
         Track::create([
             'project_id' => '2',
+            'worker_id' => '3',
+            'workTime' => 7.0,
+            'workDay' => '2026-10-05',
+        ]);
+
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '3',
+            'workTime' => 7.0,
+            'workDay' => '2026-10-06',
+        ]);
+
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '3',
+            'workTime' => 7.0,
+            'workDay' => '2026-10-07',
+        ]);
+
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '3',
+            'workTime' => 5.0,
+            'workDay' => '2026-10-08',
+        ]);
+
+        Track::create([
+            'project_id' => '2',
+            'worker_id' => '3',
+            'workTime' => 3.0,
+            'workDay' => '2026-10-13',
+        ]);
+
+        // transaction track 3
+        Track::create([
+            'project_id' => '3',
+            'worker_id' => '4',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-05',
+        ]);
+
+        Track::create([
+            'project_id' => '3',
+            'worker_id' => '4',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-06',
+        ]);
+
+        Track::create([
+            'project_id' => '3',
+            'worker_id' => '4',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-07',
+        ]);
+
+        Track::create([
+            'project_id' => '3',
+            'worker_id' => '4',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-08',
+        ]);
+
+        Track::create([
+            'project_id' => '3',
+            'worker_id' => '4',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-09',
+        ]);
+
+        // transaction no plan track
+        Track::create([
+            'project_id' => '4',
             'worker_id' => '2',
-            'workTime' => 1.0,
-            'workDay' => '2026-09-28',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-05',
+        ]);
+
+        Track::create([
+            'project_id' => '4',
+            'worker_id' => '2',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-06',
+        ]);
+
+        Track::create([
+            'project_id' => '4',
+            'worker_id' => '2',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-07',
         ]);
     }
 }
