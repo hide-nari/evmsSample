@@ -20,6 +20,15 @@ new class extends Component {
     public function plans(): LengthAwarePaginator
     {
         return Plan::withTrashed($this->trashViewFlg)
+            ->when(request('projectId'), function (Builder $query) {
+                $query->where('project_id', request('projectId'));
+            })
+            ->when(request('workerId'), function (Builder $query) {
+                $query->where('worker_id', request('workerId'));
+            })
+            ->when($this->search, function (Builder $query) {
+                $query->where('worker_id', 'like', '%'.$this->search.'%');
+            })
             ->when($this->noLinkedProjectFlg, function (Builder $query) {
                 $query->where('project_id', '0');
             })

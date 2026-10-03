@@ -20,6 +20,15 @@ new class extends Component {
     public function tracks(): LengthAwarePaginator
     {
         return Track::withTrashed($this->trashViewFlg)
+            ->when(request('projectId'), function (Builder $query) {
+                $query->where('project_id', request('projectId'));
+            })
+            ->when(request('workerId'), function (Builder $query) {
+                $query->where('worker_id', request('workerId'));
+            })
+            ->when($this->search, function (Builder $query) {
+                $query->where('worker_id', 'like', '%'.$this->search.'%');
+            })
             ->when($this->noLinkedProjectFlg, function (Builder $query) {
                 $query->where('project_id', '0');
             })
@@ -126,7 +135,7 @@ new class extends Component {
                             {{ $track->workTime }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $track->workDay }}
+                            {{ $track->workDay->format('Y-m-d') }}
                         </flux:table.cell>
                         <flux:table.cell align="center">
                             @unless($track->deleted_at)

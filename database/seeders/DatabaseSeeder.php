@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => '佐藤二郎',
         ]);
         Worker::create([
-            'name' => '石島三郎',
+            'name' => '石倉三郎',
         ]);
         Worker::create([
             'name' => '伊藤四郎',

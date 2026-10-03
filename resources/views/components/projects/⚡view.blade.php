@@ -114,21 +114,31 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell>
                             @foreach($project->plans as $plan)
-                                {{ $plan->worker->name ?? '' }} :
+                                <a href="{{ route('plans.index', ['workerId' => $plan->worker->id]) }}"
+                                   class="underline">
+                                    {{ $plan->worker->name ?? '' }} :
+                                </a>
                                 {{ $plan->workDay->format('m/d') }} :
                                 {{ $plan->planTime . 'h' }}
                                 <br>
                             @endforeach
-                            {{ 'total :' . $project->plans->sum('planTime') . 'h' }}
+                            <a href="{{ route('plans.index', ['projectId' => $project->id]) }}" class="underline">
+                                {{ 'total :' . $project->plans->sum('planTime') . 'h' }}
+                            </a>
                         </flux:table.cell>
                         <flux:table.cell>
                             @foreach($project->tracks as $track)
-                                {{ $track->worker->name ?? '' }} :
+                                <a href="{{ route('tracks.index', ['workerId' => $track->worker->id]) }}"
+                                   class="underline">
+                                    {{ $track->worker->name ?? '' }} :
+                                </a>
                                 {{ $track->workDay->format('m-d') }} :
                                 {{ $track->workTime . 'h' }}
                                 <br>
                             @endforeach
-                            {{ 'total :' . $project->tracks->sum('workTime') . 'h' }}
+                            <a href="{{ route('tracks.index', ['projectId' => $project->id]) }}" class="underline">
+                                {{ 'total :' . $project->tracks->sum('workTime') . 'h' }}
+                            </a>
                         </flux:table.cell>
                         <flux:table.cell>
                             @if($project->plans->sum('planTime') !== 0 AND $project->tracks->sum('workTime') !== 0)
