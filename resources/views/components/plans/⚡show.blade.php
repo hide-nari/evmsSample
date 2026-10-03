@@ -4,6 +4,7 @@ use App\Models\Plan;
 use App\Models\Project;
 use App\Models\Worker;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 new class extends Component {
@@ -12,10 +13,11 @@ new class extends Component {
     public Collection $workers;
 
     public ?int $id = null;
-    public ?int $projectId;
-    public ?int $workerId;
-    public ?string $planTime;
-    public ?string $workDay;
+    public ?int $projectId = 0;
+    #[Validate('required')]
+    public ?int $workerId = null;
+    public ?string $planTime = null;
+    public ?string $workDay = null;
     public ?string $method = 'update';
 
     public function mount(Plan $plan): void
@@ -31,6 +33,7 @@ new class extends Component {
 
     public function add(): void
     {
+        $this->validate();
         $plan = Plan::create([
             'project_id' => $this->pull('projectId'),
             'worker_id' => $this->pull('workerId'),
@@ -45,6 +48,7 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->validate();
         Plan::findOrFail($this->id)->update([
             'project_id' => $this->projectId,
             'worker_id' => $this->workerId,
