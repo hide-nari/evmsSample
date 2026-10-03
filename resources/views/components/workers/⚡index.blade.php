@@ -85,20 +85,6 @@ new class extends Component {
                                    wire:click="sort('name')">
                     Name
                 </flux:table.column>
-                <flux:table.column sortable
-                                   :sorted="$sortBy === 'created_at'"
-                                   :direction="$sortDirection"
-                                   wire:click="sort('created_at')"
-                                   class="w-48">
-                    CreateDate
-                </flux:table.column>
-                <flux:table.column sortable
-                                   :sorted="$sortBy === 'updated_at'"
-                                   :direction="$sortDirection"
-                                   wire:click="sort('updated_at')"
-                                   class="w-48">
-                    UpdateDate
-                </flux:table.column>
                 <flux:table.column align="center" class="w-24">Edit</flux:table.column>
                 <flux:table.column align="center" class="w-24">Delete</flux:table.column>
             </flux:table.columns>
@@ -110,12 +96,6 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $worker->name }}
-                        </flux:table.cell>
-                        <flux:table.cell>
-                            {{ $worker->created_at }}
-                        </flux:table.cell>
-                        <flux:table.cell>
-                            {{ $worker->updated_at }}
                         </flux:table.cell>
                         <flux:table.cell align="center">
                             @unless($worker->deleted_at)

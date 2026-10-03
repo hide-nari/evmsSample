@@ -12,8 +12,8 @@ new class extends Component {
 
     public ?int $id = null;
     #[Validate('required')]
-    public ?string $name;
-    public ?string $workerId;
+    public ?string $name = null;
+    public ?string $workerId = null;
     public ?string $method = 'update';
 
     public function mount(System $system): void

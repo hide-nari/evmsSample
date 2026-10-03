@@ -10,7 +10,7 @@ new class extends Component {
 
     public ?int $id = null;
     #[Validate('required')]
-    public ?string $name;
+    public ?string $name = null;
     public ?string $method = 'update';
 
     public function mount(Worker $worker): void
