@@ -14,13 +14,14 @@ new class extends Component {
     public $sortDirection = 'asc';
     public $search = '';
     public $trashViewFlg = false;
+    public $noLinkedProjectFlg = false;
 
     #[Computed]
     public function tracks(): LengthAwarePaginator
     {
         return Track::withTrashed($this->trashViewFlg)
-            ->when($this->search, function (Builder $query) {
-                $query->where('name', 'like', '%'.$this->search.'%');
+            ->when($this->noLinkedProjectFlg, function (Builder $query) {
+                $query->where('project_id', '0');
             })
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate(12);
@@ -63,6 +64,7 @@ new class extends Component {
         <div class="space-y-4">
             <flux:checkbox.group label="Filter" class="mt-2">
                 <flux:checkbox label="Delete Data with Table" wire:model="trashViewFlg"/>
+                <flux:checkbox label="No Linked Project data" wire:model="noLinkedProjectFlg"/>
             </flux:checkbox.group>
             <flux:button wire:click="$refresh">Apply</flux:button>
         </div>
