@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('mgr_number')->nullable();
+            $table->string('ticket_number')->nullable();
             $table->foreignId('system_id')->nullable();
             $table->float('estimate')->nullable();
             $table->timestamps();

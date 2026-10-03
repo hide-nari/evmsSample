@@ -17,7 +17,7 @@ class Project extends Model
     protected $fillable
         = [
             'name',
-            'mgr_number',
+            'ticket_number',
             'system_id',
             'estimate',
         ];

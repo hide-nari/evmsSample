@@ -66,21 +66,21 @@ class DatabaseSeeder extends Seeder
 
         Project::create([
             'name' => '改修プラン1',
-            'mgr_number' => '123',
+            'ticket_number' => '123',
             'system_id' => 1,
             'estimate' => 0.3,
         ]);
 
         Project::create([
             'name' => '改修プラン2',
-            'mgr_number' => '456',
+            'ticket_number' => '456',
             'system_id' => 1,
             'estimate' => 0.24,
         ]);
 
         Project::create([
             'name' => '不具合1',
-            'mgr_number' => 'TBD',
+            'ticket_number' => 'TBD',
             'system_id' => 1,
             'estimate' => 0.5,
         ]);

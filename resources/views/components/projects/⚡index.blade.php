@@ -21,7 +21,7 @@ new class extends Component {
         return Project::withTrashed($this->trashViewFlg)
             ->when($this->search, function (Builder $query) {
                 $query->where('name', 'like', '%'.$this->search.'%')
-                    ->orWhere('mgr_number', 'like', '%'.$this->search.'%')
+                    ->orWhere('ticket_number', 'like', '%'.$this->search.'%')
                     ->withTrashed($this->trashViewFlg);
             })
             ->orderBy($this->sortBy, $this->sortDirection)
@@ -88,10 +88,10 @@ new class extends Component {
                     Name
                 </flux:table.column>
                 <flux:table.column sortable
-                                   :sorted="$sortBy === 'mgr_number'"
+                                   :sorted="$sortBy === 'ticket_number'"
                                    :direction="$sortDirection"
-                                   wire:click="sort('mgr_number')">
-                    MGR Number
+                                   wire:click="sort('ticket_number')">
+                    Ticket Number
                 </flux:table.column>
                 <flux:table.column sortable
                                    :sorted="$sortBy === 'system_id'"
@@ -118,7 +118,7 @@ new class extends Component {
                             {{ $project->name }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $project->mgr_number }}
+                            {{ $project->ticket_number }}
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $project->system->name ?? '' }}

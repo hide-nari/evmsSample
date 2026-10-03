@@ -20,7 +20,7 @@ new class extends Component {
     {
         return Project::withTrashed($this->trashViewFlg)
             ->when($this->search, function (Builder $query) {
-                $query->where('mgr_number', 'like', '%'.$this->search.'%');
+                $query->where('ticket_number', 'like', '%'.$this->search.'%');
             })
             ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate(12);
@@ -102,7 +102,7 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $project->name }}<br>
-                            {{ 'No.' . $project->mgr_number }}
+                            {{ 'No.' . $project->ticket_number }}
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $project->system->name ?? '' }} <br>

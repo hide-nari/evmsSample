@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'mgr_number' => $this->faker->word(),
+            'ticket_number' => $this->faker->word(),
             'estimate' => $this->faker->randomFloat(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

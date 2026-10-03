@@ -13,7 +13,7 @@ new class extends Component {
     public ?int $id = null;
     #[Validate('required')]
     public ?string $name = null;
-    public ?string $mgrNumber = null;
+    public ?string $ticketNumber = null;
     public ?string $systemId = null;
     public ?float $estimate = null;
     public ?string $method = 'update';
@@ -22,7 +22,7 @@ new class extends Component {
     {
         $project->id ? $this->id = $project->id : $this->method = 'add';
         $this->name = $project->name;
-        $this->mgrNumber = $project->mgr_number;
+        $this->ticketNumber = $project->ticket_number;
         $this->systemId = $project->system_id;
         $this->estimate = $project->estimate;
         $this->systems = System::all();
@@ -33,7 +33,7 @@ new class extends Component {
         $this->validate();
         $project = Project::create([
             'name' => $this->pull('name'),
-            'mgr_number' => $this->pull('mgrNumber'),
+            'ticket_number' => $this->pull('ticketNumber'),
             'system_id' => $this->pull('systemId'),
             'estimate' => $this->pull('estimate'),
         ]);
@@ -48,7 +48,7 @@ new class extends Component {
         $this->validate();
         Project::findOrFail($this->id)->update([
             'name' => $this->name,
-            'mgr_number' => $this->mgrNumber,
+            'ticket_number' => $this->ticketNumber,
             'system_id' => $this->systemId,
             'estimate' => $this->estimate,
         ]);
