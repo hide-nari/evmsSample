@@ -289,7 +289,7 @@ class DatabaseSeeder extends Seeder
             'workDay' => '2026-10-09',
         ]);
 
-        // transaction no plan track
+        // transaction track 4
         Track::create([
             'project_id' => '4',
             'worker_id' => '2',
@@ -309,6 +309,28 @@ class DatabaseSeeder extends Seeder
             'worker_id' => '2',
             'workTime' => 8.0,
             'workDay' => '2026-10-07',
+        ]);
+
+        // transaction no plan track
+        Track::create([
+            'project_id' => '0',
+            'worker_id' => '2',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-13',
+        ]);
+
+        Track::create([
+            'project_id' => '0',
+            'worker_id' => '2',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-14',
+        ]);
+
+        Track::create([
+            'project_id' => '0',
+            'worker_id' => '2',
+            'workTime' => 8.0,
+            'workDay' => '2026-10-15',
         ]);
     }
 }
