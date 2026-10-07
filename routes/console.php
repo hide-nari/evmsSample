@@ -14,6 +14,17 @@ Artisan::command('init:project', function () {
     });
 })->purpose('project_init_sample');
 
+Artisan::command('add:test', function () {
+    $file = Storage::get('text.txt');
+    $data = explode("\n", $file);
+    foreach ($data as $datum) {
+        $val = explode(",", $datum);
+        foreach ($val as $v) {
+            dump($v);
+        }
+    }
+})->purpose('test');
+
 Artisan::command('add:project', function () {
     Project::create([
         'name' => '不具合2(プランがないサンプル)',
