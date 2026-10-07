@@ -114,7 +114,7 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell>
                             @foreach($project->plans as $plan)
-                                <a href="{{ route('plans.index', ['workerId' => $plan->worker->id]) }}"
+                                <a href="{{ route('plans.index', ['projectId' => $project->id, 'workerId' => $plan->worker->id]) }}"
                                    class="underline">
                                     {{ $plan->worker->name ?? '' }} :
                                 </a>
@@ -128,7 +128,7 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell>
                             @foreach($project->tracks as $track)
-                                <a href="{{ route('tracks.index', ['workerId' => $track->worker->id]) }}"
+                                <a href="{{ route('tracks.index', ['projectId' => $project->id, 'workerId' => $track->worker->id]) }}"
                                    class="underline">
                                     {{ $track->worker->name ?? '' }} :
                                 </a>
