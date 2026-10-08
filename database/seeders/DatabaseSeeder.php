@@ -9,6 +9,7 @@ use App\Models\Track;
 use App\Models\Worker;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,34 +21,30 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // master
-        Worker::create([
-            'name' => '鈴木一郎',
-        ]);
-        Worker::create([
-            'name' => '佐藤二郎',
-        ]);
-        Worker::create([
-            'name' => '石倉三郎',
-        ]);
-        Worker::create([
-            'name' => '伊藤四郎',
-        ]);
+        $inputWorkerFile = Storage::get('mst/workers.txt');
+        $workerLists = explode("\n", $inputWorkerFile);
+        foreach ($workerLists as $item) {
+            $workerData = explode(",", $item);
+            // todo: delete if statement
+            if ($workerData[0]) {
+                Worker::create([
+                    'name' => $workerData[1],
+                ]);
+            }
+        }
 
-        Worker::create([
-            'name' => '野口五郎',
-        ]);
-
-        System::create([
-            'name' => 'システムAAA',
-            'worker_id' => 5,
-        ]);
-        System::create([
-            'name' => 'システムBBB',
-            'worker_id' => 5,
-        ]);
-        System::create([
-            'name' => 'システムCCC',
-        ]);
+        $inputSystemFile = Storage::get('mst/systems.txt');
+        $systemLists = explode("\n", $inputSystemFile);
+        foreach ($systemLists as $item) {
+            $systemData = explode(",", $item);
+            // todo: delete if statement
+            if ($systemData[0]) {
+                System::create([
+                    'name' => $systemData[1],
+                    'worker_id' => $systemData[2] ?? null,
+                ]);
+            }
+        }
 
         // transaction project
         Project::create([
