@@ -15,24 +15,15 @@ Artisan::command('init:project', function () {
     });
 })->purpose('project_init_sample');
 
-Artisan::command('add:test', function () {
-    $projectInputData = Excel::toArray(new ProjectImport, 'testOne.xlsx');
+Artisan::command('add:projects', function () {
+    $projectInputData = Excel::toArray(new ProjectImport, 'projects.xlsx');
     foreach ($projectInputData as $sheet) {
         foreach ($sheet as $row) {
             $resultStr = '';
             for ($i = 0; $i < count($row); $i++) {
                 $resultStr .= $row[$i] . ',';
             }
-            Storage::append('/data/projects.txt', $resultStr);
+            Storage::append('/tra/projects.txt', $resultStr);
         }
     }
-})->purpose('test');
-
-Artisan::command('add:project', function () {
-    Project::create([
-        'name' => '不具合2(プランがないサンプル)',
-        'ticket_number' => 'TBD',
-        'system_id' => 1,
-        'estimate' => 0.5,
-    ]);
-})->purpose('project_add_sample');
+})->purpose('import excel project data');
