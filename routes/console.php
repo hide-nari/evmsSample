@@ -1,5 +1,6 @@
 <?php
 
+use App\Imports\ProjectImport;
 use App\Models\Project;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -15,12 +16,14 @@ Artisan::command('init:project', function () {
 })->purpose('project_init_sample');
 
 Artisan::command('add:test', function () {
-    $file = Storage::get('text.txt');
-    $data = explode("\n", $file);
-    foreach ($data as $datum) {
-        $val = explode(",", $datum);
-        foreach ($val as $v) {
-            dump($v);
+    $projectInputData = Excel::toArray(new ProjectImport, 'testOne.xlsx');
+    foreach ($projectInputData as $sheet) {
+        foreach ($sheet as $row) {
+            $resultStr = '';
+            for ($i = 0; $i < count($row); $i++) {
+                $resultStr .= $row[$i] . ',';
+            }
+            Storage::append('/data/projects.txt', $resultStr);
         }
     }
 })->purpose('test');
