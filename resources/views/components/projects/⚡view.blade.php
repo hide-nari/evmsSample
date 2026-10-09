@@ -19,6 +19,8 @@ new class extends Component {
     public function projects(): LengthAwarePaginator
     {
         return Project::withTrashed($this->trashViewFlg)
+            ->withSum('plans', 'planTime')
+            ->withSum('tracks', 'workTime')
             ->when($this->search, function (Builder $query) {
                 $query->where('ticket_number', 'like', '%'.$this->search.'%');
             })
@@ -142,7 +144,7 @@ new class extends Component {
                         </flux:table.cell>
                         <flux:table.cell>
                             @if($project->plans->sum('planTime') !== 0 AND $project->tracks->sum('workTime') !== 0)
-                                {{ Number::parseFloat($project->plans->sum('planTime')) / Number::parseFloat($project->tracks->sum('workTime')) }}
+                                {{ $project->plans_sum_plantime / $project->tracks_sum_worktime }}
                             @endif
                         </flux:table.cell>
                     </flux:table.row>
