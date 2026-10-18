@@ -13,4 +13,5 @@ test('authenticated users can visit the dashboard', function () {
 
     $response = $this->get(route('projects.view'));
     $response->assertOk();
+    $response->assertSeeText('Planed Value123');
 });

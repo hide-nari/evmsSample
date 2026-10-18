@@ -87,7 +87,7 @@ new class extends Component {
                     Estimate
                 </flux:table.column>
                 <flux:table.column>
-                    Planed Value
+                    Planed Value123
                 </flux:table.column>
                 <flux:table.column>
                     Actual Cost
